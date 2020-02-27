@@ -1,0 +1,53 @@
+<ng-container *ngIf="chat$ | async as chat">
+  <ng-container *ngIf="authService.user$ | async as user">
+    <div class="header">
+      <a mat-button routerLink="/">Back</a>
+      <div class="room-link">
+        Room link: <a [href]="roomLocation">{{ roomLocation }}</a>
+      </div>
+    </div>
+
+    <div #roomChat class="room-messages">
+      <div *ngFor="let message of chat.messages; trackBy: trackByCreated">
+        <div class="message d-flex">
+          <img [src]="message.user?.photoURL" width="50px" height="50px" />
+          <div>
+            <div class="msg">
+              <strong class="msg-sender">{{
+                message.user?.displayName || message.user?.uid
+              }}</strong>
+              <span class="msg-time">{{
+                message.createdAt | date: "MM/dd/yy, h:mm a"
+              }}</span>
+            </div>
+            <div class="msg-content">{{ message.content }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form w-100">
+      <form
+        [formGroup]="chatForm"
+        (ngSubmit)="submit(chat.id)"
+        class="d-flex align-items-baseline w-100"
+      >
+        <mat-form-field class="message-field flex-grow-1">
+          <mat-label>Message</mat-label>
+          <input matInput formControlName="messageCtrl" maxlength="100" />
+        </mat-form-field>
+        <div class="d-inline-block">
+          <button
+            mat-flat-button
+            color="primary"
+            type="submit"
+            class="button is-info"
+            [disabled]="chatForm.invalid"
+          >
+            Send
+          </button>
+        </div>
+      </form>
+    </div>
+  </ng-container>
+</ng-container>

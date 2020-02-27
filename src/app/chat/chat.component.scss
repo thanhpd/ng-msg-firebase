@@ -1,0 +1,36 @@
+:host {
+  position: relative;
+  display: block;
+}
+
+.message-field {
+  margin-right: 10px;
+}
+
+.room-link {
+  font-size: 0.8rem;
+}
+
+.room-messages {
+  margin-top: 10px;
+}
+
+.message {
+  margin-bottom: 10px;
+
+  img {
+    margin-right: 10px;
+  }
+
+  .msg {
+    margin-bottom: 3px;
+
+    &-sender {
+      margin-right: 10px;
+    }
+
+    &-time {
+      font-size: 0.8rem;
+    }
+  }
+}

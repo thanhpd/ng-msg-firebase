@@ -1,0 +1,28 @@
+<div *ngIf="authService.user$ | async as user; else login">
+  <h2>Welcome, {{ user.displayName }} 👋</h2>
+  <button mat-button color="primary" (click)="chatService.createRoom()">
+    Create new chat room
+  </button>
+  or join your created rooms below.
+  <mat-list>
+    <h3 mat-subheader>Your Created Chat Rooms</h3>
+    <mat-list-item *ngFor="let chat of userChatRoom$ | async">
+      <a [routerLink]="['room', chat.id]">
+        <div matLine>{{ chat.id }}</div>
+        <div matLine>{{ chat.createdAt | date: "MM/dd/yy, h:mm a" }}</div>
+        <div matLine>{{ chat.messages.length }} messages</div>
+      </a>
+    </mat-list-item>
+  </mat-list>
+</div>
+
+<ng-template #login>
+  <h1>NgMsgFirestore</h1>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="authService.signInViaGoogle()"
+  >
+    Login with Google
+  </button>
+</ng-template>

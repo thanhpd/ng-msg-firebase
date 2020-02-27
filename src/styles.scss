@@ -1,1 +1,48 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/scss/bootstrap-grid";
+
+html,
+body,
+.body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("~/assets/images/home-bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: grey;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.mt-toolbar {
+  margin-left: -15px;
+  margin-right: -15px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  .btn-user {
+    padding: 0 8px;
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+  }
+}
